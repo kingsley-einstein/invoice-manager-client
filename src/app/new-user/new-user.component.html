@@ -1,0 +1,67 @@
+<form [formGroup]="addUserGroup">
+  <div class="form-group">
+    <label class="control-label">
+      Email
+    </label>
+    <input type="email" class="form-control" [class.btn-outline-success]="email.pristine || email.valid" [class.btn-outline-danger]="email.dirty && email.invalid" [formControl]="email">
+      <ul class="text-danger list-unstyled" *ngIf="email.dirty && email.invalid">
+        <li *ngIf="email.errors.required">
+          A custom email is required
+        </li>
+        <li *ngIf="email.errors.email">
+          Wrong email format
+        </li>
+      </ul>
+    </div>
+    <div class="form-group">
+      <label class="control-label">
+        Name
+      </label>
+      <input type="text" class="form-control" [class.btn-outline-success]="name.pristine || name.valid" [class.btn-outline-danger]="name.dirty && name.invalid" [formControl]="name">
+        <ul class="text-danger list-unstyled" *ngIf="name.dirty && name.invalid">
+          <li *ngIf="name.errors.required">
+            Name is required
+          </li>
+        </ul>
+      </div>
+      <div class="form-group">
+      <label class="control-label">
+        Phone No.
+      </label>
+      <input type="tel" class="form-control" [class.btn-outline-success]="phone.pristine || phone.valid" [class.btn-outline-danger]="phone.dirty && phone.invalid" [formControl]="phone">
+        <ul class="text-danger list-unstyled" *ngIf="phone.dirty && phone.invalid">
+          <li *ngIf="phone.errors.required">
+            Phone number is required
+          </li>
+          <li *ngIf="phone.errors.pattern">
+            Invalid format
+          </li>
+        </ul>
+      </div>
+      <div class="form-group">
+      <label class="control-label">
+        Address
+      </label>
+      <input type="text" class="form-control" [class.btn-outline-success]="address.pristine || address.valid" [class.btn-outline-danger]="address.dirty && address.invalid" [formControl]="address">
+        <ul class="text-danger list-unstyled" *ngIf="address.dirty && address.invalid">
+          <li *ngIf="address.errors.required">
+            Address is required
+          </li>
+          <li *ngIf="address.errors.pattern">
+            Invalid address format
+          </li>
+        </ul>
+      </div>
+    <div class="form-group">
+    <label class="control-label">
+    Password
+  </label>
+  <input type="password" class="form-control" [class.btn-outline-success]="password.pristine || password.valid" [class.btn-outline-danger]="password.dirty && password.invalid" [formControl]="password">
+    <ul class="text-danger list-unstyled" *ngIf="password.dirty && password.invalid">
+      <li *ngIf="password.errors.required">
+        Password is required
+      </li>
+    </ul>
+  </div>
+</form>
+<button class="btn btn-primary btn-lg" [disabled]="addUserGroup.invalid" (click)="addUser()">Add User</button>

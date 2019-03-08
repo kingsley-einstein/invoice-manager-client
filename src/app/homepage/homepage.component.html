@@ -1,0 +1,60 @@
+<ngb-tabset type="tabs" justify="fill">
+    <ngb-tab>
+        <ng-template ngbTabTitle>
+            <b>Login Without Token</b>
+        </ng-template>
+        <ng-template ngbTabContent>
+                <div class="row">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4">
+                            <div class="login-group">
+                                <form [formGroup]="loginGroup">
+                                    <div class="page-header">
+                                        <div class="row">
+                                            <div class="col-sm-4"></div>
+                                            <div class="col-sm-4">
+                                                <h4>Login</h4>
+                                            </div>
+                                            <div class="col-sm-4"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Email</label>
+                                        <input [formControl]="email" type="email" class="form-control btn-outline-success">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Password</label>
+                                        <input [formControl]="password" type="password" class="form-control btn-outline-success">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="checkbox" [(ngModel)]="remember" [ngModelOptions]="{standalone: true}">
+                                        <label class="control-label">Remember me</label>
+                                    </div>
+                                </form>
+                                <button [disabled]="loginGroup.invalid" (click)="login()" class="btn btn-primary btn-large">Sign In</button>
+                            </div>        
+                        </div>
+                        <div class="col-sm-4"></div>
+                    </div>
+        </ng-template>
+    </ngb-tab>
+    <ngb-tab>
+        <ng-template ngbTabTitle>
+            <b>Login With Token</b>
+        </ng-template>
+        <ng-template ngbTabContent>
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <div class="login-group">
+                        <div class="form-group">
+                            <label class="control-label">Token</label>
+                            <input [(ngModel)]="tokenModel" type="text" class="form-control btn-outline-success">
+                        </div>
+                        <button [disabled]="tokenModel.trim().length <= 0" (click)="loginByToken()" class="btn btn-primary btn-large">Sign In</button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-tab>
+</ngb-tabset>

@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-header">
+    <h6>New User Detail</h6>
+  </div>
+  <div class="card-body">
+    <div class="card-text">
+      <div class="card-title">
+        <b>Name:</b>
+      </div>
+      <small *ngIf="detail">
+        {{ detail.name }}
+      </small>
+      <div class="card-title">
+        <b>Email:</b>
+      </div>
+      <small *ngIf="detail">
+        {{ detail.email }}
+      </small>
+      <div class="card-title">
+        <b>Phone:</b>
+      </div>
+      <small *ngIf="detail">
+        {{ detail.phone }}
+      </small>
+      <div class="card-title">
+        <b>Id:</b>
+      </div>
+      <small *ngIf="detail">
+        {{ detail.id }}
+      </small>
+      <div class="card-title">
+        <b>Date Joined:</b>
+      </div>
+      <small *ngIf="detail">
+        {{ detail.dateJoined }}
+      </small>
+      <div class="card-title">
+        <b>Token:</b>
+      </div>
+      <small *ngIf="detail">
+        {{ detail.token }}
+      </small>
+    </div>
+  </div>
+</div>

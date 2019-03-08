@@ -1,0 +1,65 @@
+<ngb-tabset type="tabs" justify="fill">
+  <ngb-tab>
+    <ng-template ngbTabTitle>
+      <b>Add User</b>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <div style="margin-top: 40px; padding: 15px;">
+        <div class="row row-fluid" style="padding: 15px;">
+          <div class="col-sm-6 col-md-6 col-sm-offset-5 col-md-offset-5">
+            <app-new-user (newUserRegistered)="bindEvent($event)"></app-new-user>
+          </div>
+          <div class="col-sm-6 col-md-6 col-sm-offset-5 col-md-offset-5">
+            <app-user-info [detail]="detail"></app-user-info>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab>
+    <ng-template ngbTabTitle>
+      <b>Unvalidated Invoices</b>
+       <span class="badge badge-danger">
+         {{ unvalidatedInvoices }}
+       </span>
+    </ng-template>
+    <ng-template ngbTabContent>
+      Placeholder
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab>
+    <ng-template ngbTabTitle>
+      <b>Validated Invoices</b>
+      <span class="badge badge-success">
+        {{ validatedInvoices }}
+      </span>
+    </ng-template>
+    <ng-template ngbTabContent>
+      Placeholder
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab>
+    <ng-template ngbTabTitle>
+      <b>Statistics</b>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <app-chart></app-chart>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab>
+    <ng-template ngbTabTitle>
+      <b>Chat</b>
+    </ng-template>
+    <ng-template ngbTabContent>
+      Placeholder
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab>
+    <ng-template ngbTabTitle>
+      <b>Users</b>
+    </ng-template>
+    <ng-template ngbTabContent>
+      Placeholder
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
