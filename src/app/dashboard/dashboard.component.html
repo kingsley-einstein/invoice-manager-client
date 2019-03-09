@@ -10,7 +10,7 @@
             <app-new-user (newUserRegistered)="bindEvent($event)"></app-new-user>
           </div>
           <div class="col-sm-6 col-md-6 col-sm-offset-5 col-md-offset-5">
-            <app-user-info [detail]="detail"></app-user-info>
+            <app-user-info [detail]="detail" (detailCleared)="clear($event)"></app-user-info>
           </div>
         </div>
       </div>
@@ -24,7 +24,13 @@
        </span>
     </ng-template>
     <ng-template ngbTabContent>
-      Placeholder
+      <div class="row row-fluid">
+        <div class="col-sm-3 col-md-3 col-sm-offset-5 col-md-offset-5"></div>
+        <div class="col-sm-6 col-md-6 col-sm-offset-5 col-md-offset-5">
+          <app-unvalidated-invoice></app-unvalidated-invoice>
+        </div>
+        <div class="col-sm-3 col-md-3 col-sm-offset-5 col-md-offset-5"></div>
+      </div>
     </ng-template>
   </ngb-tab>
   <ngb-tab>
@@ -35,7 +41,13 @@
       </span>
     </ng-template>
     <ng-template ngbTabContent>
-      Placeholder
+      <div class="row row-fluid">
+        <div class="col-sm-3 col-md-3 col-sm-offset-5 col-md-offset-5"></div>
+        <div class="col-sm-6 col-md-6 col-sm-offset-5 col-md-offset-5">
+          <app-validated-invoice></app-validated-invoice>
+        </div>
+        <div class="col-sm-3 col-md-3 col-sm-offset-5 col-md-offset-5"></div>
+      </div>
     </ng-template>
   </ngb-tab>
   <ngb-tab>
@@ -59,7 +71,7 @@
       <b>Users</b>
     </ng-template>
     <ng-template ngbTabContent>
-      Placeholder
+      <app-users-list></app-users-list>
     </ng-template>
   </ngb-tab>
 </ngb-tabset>

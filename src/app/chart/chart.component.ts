@@ -24,6 +24,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
     "Cornflowerblue", "Crimson", "Darkgoldenrod", "Firebrick",
     "Fuchsia"
   ];
+  datesLine: any;
 
   monthsChart: any;
   monthsNumber = [
@@ -40,6 +41,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
     "Red", "Teal"
   ];
   monthsData: number[] = [];
+  monthsLine: any;
   
   constructor(private graphService: GraphqlRestService) {
     
@@ -62,8 +64,14 @@ export class ChartComponent implements OnInit, AfterViewInit {
       });
     });
 
+    await this.monthsNumber.forEach(i => {
+      this.graphService.countTicketsByMonth(i).subscribe(r => {
+        this.monthsData.push(r);
+      })
+    });
+
     let ctx = document.getElementById('canvas');
-    this.datesChart = new Chart(ctx, {
+    this.datesChart = await new Chart(ctx, {
       type: 'pie',
       data: {
         labels: this.dates,
@@ -100,15 +108,9 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
     console.log(ctx);
     console.log(this.datesChart);
-
-    await this.monthsNumber.forEach(i => {
-      this.graphService.countTicketsByMonth(i).subscribe(r => {
-        this.monthsData.push(r);
-      })
-    });
     
     let ctx2 = document.getElementById('canvas2');
-    this.monthsChart = new Chart(ctx2, {
+    this.monthsChart = await new Chart(ctx2, {
       type: 'polarArea',
       data: {
         labels: this.monthsLabel,
@@ -146,6 +148,78 @@ export class ChartComponent implements OnInit, AfterViewInit {
     console.log(ctx2);
     console.log(this.monthsChart);
 
+    let ctx3 = document.getElementById('canvas3');
+
+    this.datesLine = await new Chart(ctx3, {
+      type: 'line',
+      data: {
+        labels: this.dates,
+        datasets: [{
+          data: this.datesData,
+          label: 'Items Repaired',
+          borderColor: this.datesColors[Math.floor(Math.random() * this.datesColors.length)],
+          borderWidth: 2,
+          fill: true
+        }]
+      },
+      options: {
+        legend: {
+          display: true,
+          position: 'bottom'
+        },
+        maintainAspectRatio: false,
+        responsive: true,
+        scales: {
+          xAxes: [{
+            display: true
+          }],
+          yAxes: [{
+            display: true
+          }]
+        },
+        title: {
+          display: true,
+          text: 'Line Graph For Items Per Day'
+        },
+        showLines: true
+      }
+    });
+
+    console.log(ctx3);
+    console.log(this.datesLine);
+
+    let ctx4 = document.getElementById('canvas4');
+    this.monthsLine = await new Chart(ctx4, {
+      type: 'line',
+      data: {
+        labels: this.monthsLabel,
+        datasets: [
+          {
+            data: this.monthsData,
+            label: 'Items Repaired',
+            borderColor: this.monthsColor[Math.floor(Math.random() * this.monthsColor.length)],
+            borderWidth: 2,
+            fill: true
+          }
+        ]
+      },
+      options: {
+        legend: {
+          display: true,
+          position: 'bottom'
+        },
+        maintainAspectRatio: false,
+        responsive: true,
+        title: {
+          display: true,
+          text: 'Line Graph For Items Per Month'
+        },
+        showLines: true
+      }
+    });
+
+    console.log(ctx4);
+    console.log(this.monthsLine);
   }
 
 }

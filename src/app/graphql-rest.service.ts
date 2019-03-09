@@ -213,12 +213,27 @@ export class GraphqlRestService {
             token,
             email,
             phone,
-            address
+            address,
+            role {
+              value
+            }
           }
         }
        `
      }).valueChanges.pipe(
        map(query => query.data.findAllUsers)
+     );
+   }
+
+   countAllUsers() {
+     return this.apollo.watchQuery<Query>({
+       query: this.ql `
+        query {
+          countAllUsers
+        }
+       `
+     }).valueChanges.pipe(
+       map(r => r.data.countAllUsers)
      );
    }
 

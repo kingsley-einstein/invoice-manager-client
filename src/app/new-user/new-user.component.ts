@@ -66,6 +66,7 @@ export class NewUserComponent implements OnInit {
       },
       () => {
         this.newUserRegistered.emit(this.userData);
+        this.addUserGroup.reset();
       });
   }
 

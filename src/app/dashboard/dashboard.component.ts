@@ -26,6 +26,10 @@ export class DashboardComponent implements OnInit {
     console.log(event.data.newUser);
   }
 
+  clear(event: any) {
+    this.detail = event;
+  }
+
   countValidatedInvoices() {
     this.graphService.countInvoicesByStatus(true).subscribe(r => {
       this.validatedInvoices = r;

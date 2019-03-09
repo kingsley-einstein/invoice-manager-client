@@ -1,3 +1,24 @@
-<p>
-  validated-invoice works!
-</p>
+<table class="table table-striped">
+  <thead>
+    <td>
+      <b>Id</b>
+    </td>
+    <td>
+      <b>Action</b>
+    </td>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of data">
+      <td>
+        {{ i.id }}
+      </td>
+      <td>
+        <button class="btn btn-success btn-md">
+          View
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ngb-pagination [(page)]="page" [collectionSize]="size" [pageSize]="12" [ellipses]="false" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadInvoices(); getCollectionSize()" [maxSize]="7">
+</ngb-pagination>

@@ -10,4 +10,5 @@ export type Query  = {
     countInvoicesByStatus: number;
     countTicketsByDay: number;
     countTicketsByMonth: number;
+    countAllUsers: number;
 }

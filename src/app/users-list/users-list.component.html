@@ -1,3 +1,49 @@
-<p>
-  users-list works!
-</p>
+<div style="margin-top: 40px;">
+  <div class="row row-fluid">
+    <div class="col-sm-4 col-md-4"></div>
+    <div class="col-sm-4 col-md-4">
+      <div class="form-group">
+        <input class="form-control" placeholder="Search" (input)="filter($event)">
+      </div>
+    </div>
+    <div class="col-sm-4 col-md-4"></div>
+  </div>
+  <div class="card-group">
+    <div *ngFor="let user of users" style="padding: 18px;">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <b> {{ user.name }}</b>
+            <caption>
+              <span class="badge badge-info">
+                {{ user.role.value }}
+              </span>
+            </caption>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-text">
+            <div>
+              <b> ID: </b>
+              <small> {{ user.id }}</small>
+            </div>
+            <div>
+              <b> Email: </b>
+              <small> {{ user.email }} </small>
+            </div>
+            <div>
+              <b> Phone: </b>
+              <small> {{ user.phone }}</small>
+            </div>
+            <div>
+              <b> Address: </b>
+              <small> {{ user.address }}</small>
+            </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <ngb-pagination [(page)]="page" [collectionSize]="size" [pageSize]="12" [ellipses]="false" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadUsers()" [maxSize]="7">
+  </ngb-pagination>
+</div>
