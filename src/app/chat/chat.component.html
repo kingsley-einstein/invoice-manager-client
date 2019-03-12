@@ -1,0 +1,34 @@
+<div style="margin: 40px; padding: 20px;">
+  <div class="form-group">
+    <input class="form-control btn-outline-primary" [(ngModel)]="message">
+  </div>
+  <div>
+    <button [disabled]="message.trim().length <= 0" (click)="sendMessage()" class="btn btn-primary">
+      Send Message
+    </button>
+  </div>
+  <div>
+    <ul class="list-unstyled" style="padding: 14px;">
+      <li *ngFor="let i of messages" class="bg-default">
+        <div class="row row-fluid">
+          <div class="col col-4">
+            <b>
+              #{{ i.userId }}
+            </b>
+            <span class="badge badge-info">
+              {{ i.userRole }}
+            </span>
+          </div>
+          <div class="col col-4">
+            {{ i.message }}
+          </div>
+          <div class="col col-4">
+            <span class="badge badge-success">
+                {{ i.on }}                
+            </span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

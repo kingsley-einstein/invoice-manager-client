@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GraphqlRestService } from '../graphql-rest.service';
+import { ActivatedRoute } from '@angular/router';
+import fa from 'fontawesome';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,14 +13,23 @@ export class DashboardComponent implements OnInit {
   validatedInvoices: number;
   unvalidatedInvoices: number;
   detail: any;
+  userId: any;
+  userRole: any;
+  icon = fa;
+  users: number;
 
-  constructor(private graphService: GraphqlRestService) { 
-
+  constructor(private graphService: GraphqlRestService, activatedRoute: ActivatedRoute) { 
+    activatedRoute.params.subscribe(params => {
+      this.userId = params.id;
+      this.userRole = params.role;
+    });
   }
 
   ngOnInit() {
     this.countUnvalidatedInvoices();
     this.countValidatedInvoices();
+    this.countUsers();
+    console.log(String.fromCharCode(this.icon.xRay));
   }
 
   bindEvent(event: any) {
@@ -39,6 +50,12 @@ export class DashboardComponent implements OnInit {
   countUnvalidatedInvoices() {
     this.graphService.countInvoicesByStatus(false).subscribe(r => {
       this.unvalidatedInvoices = r;
+    });
+  }
+
+  countUsers() {
+    this.graphService.countAllUsers().subscribe(r => {
+      this.users = r;
     });
   }
 

@@ -27,6 +27,7 @@
     "bootstrap": "^4.3.1",
     "chart.js": "^2.7.3",
     "core-js": "^2.5.4",
+    "fontawesome": "^5.6.3",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
     "rxjs": "~6.3.3",

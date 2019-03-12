@@ -25,6 +25,8 @@ import { InvoiceDetailComponent } from './invoice-detail/invoice-detail.componen
 import { UserInfoComponent } from './user-info/user-info.component';
 import { TicketInfoComponent } from './ticket-info/ticket-info.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ChatComponent } from './chat/chat.component';
+import { TicketsComponent } from './tickets/tickets.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     TicketDetailComponent,
     InvoiceDetailComponent,
     UserInfoComponent,
-    TicketInfoComponent
+    TicketInfoComponent,
+    ChatComponent,
+    TicketsComponent
   ],
   imports: [
     BrowserModule,

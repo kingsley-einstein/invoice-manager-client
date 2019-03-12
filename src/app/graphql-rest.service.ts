@@ -5,6 +5,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import gql from 'graphql-tag';
 import { Query } from './types';
 import { map } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class GraphqlRestService {
   constructor(private apollo: Apollo, httpLink: HttpLink) {
     apollo.create({
       link: httpLink.create({
-        uri: 'http://localhost:11789/gql'
+        uri: `${environment.server}/gql`
       }),
       cache: new InMemoryCache()
     });
@@ -98,7 +99,7 @@ export class GraphqlRestService {
        mutation: this.ql `
         mutation {
           createTicket(
-            userId: "${id}",
+            userId: ${id},
             parts: "${parts}",
             phone: "${phone}",
             client: "${client}"
