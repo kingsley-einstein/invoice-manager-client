@@ -1,3 +1,40 @@
-<p>
-  ticket-info works!
-</p>
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">
+      <h6> New Ticket Detail</h6>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-text">
+      <div>
+        <b> Id: </b>
+        <small *ngIf="detail">
+          {{ detail.id }}
+        </small>
+      </div>
+      <div>
+        <b> Phone: </b>
+        <small *ngIf="detail">
+          {{ detail.phone }}
+        </small>
+      </div>
+      <div>
+        <b> Parts: </b>
+        <div *ngIf="detail && detail.parts">
+          <span *ngFor="let item of detail.parts.split(',')" class="badge badge-info">
+            {{ item }}
+          </span>
+        </div>
+      </div>
+      <div>
+        <b> Client: </b>
+        <small *ngIf="detail">
+          {{ detail.client }}
+        </small>
+      </div>
+    </div>
+    <button class="btn btn-warning btn-sm" (click)="clear()">
+      Clear
+    </button>
+  </div>
+</div>

@@ -226,6 +226,20 @@ export class GraphqlRestService {
      );
    }
 
+   findAllUsersWithNoLimit() {
+     return this.apollo.watchQuery<Query>({
+       query: this.ql `
+        query {
+          findAllUsersWithNoLimit {
+            id
+          }
+        }
+       `
+     }).valueChanges.pipe(
+       map(query => query.data.findAllUsersWithNoLimit)
+     );
+   }
+
    countAllUsers() {
      return this.apollo.watchQuery<Query>({
        query: this.ql `
@@ -365,6 +379,18 @@ export class GraphqlRestService {
        `
      }).valueChanges.pipe(
        map(r => r.data.countTicketsByMonth)
+     );
+   }
+
+   countTicketsByUsers(id) {
+     return this.apollo.watchQuery<Query>({
+       query: this.ql `
+        query {
+          countTicketsByUsers(id: ${id})
+        }
+       `
+     }).valueChanges.pipe(
+       map(r => r.data.countTicketsByUsers)
      );
    }
 

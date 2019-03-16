@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GraphqlRestService } from '../graphql-rest.service';
 import { ActivatedRoute } from '@angular/router';
-import fa from 'fontawesome';
+import { faUserPlus, faClipboard, faChartArea, faComment, faUsers } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,9 +13,17 @@ export class DashboardComponent implements OnInit {
   validatedInvoices: number;
   unvalidatedInvoices: number;
   detail: any;
+  ticketDetail: any;
   userId: any;
   userRole: any;
-  icon = fa;
+
+  addUserIcon: any = faUserPlus;
+  issueTicketIcon: any = faClipboard;
+  statisticsIcon: any = faChartArea;
+  chatIcon: any = faComment;
+  usersIcon: any = faUsers;
+  //icon = fa;
+
   users: number;
 
   constructor(private graphService: GraphqlRestService, activatedRoute: ActivatedRoute) { 
@@ -29,7 +37,7 @@ export class DashboardComponent implements OnInit {
     this.countUnvalidatedInvoices();
     this.countValidatedInvoices();
     this.countUsers();
-    console.log(String.fromCharCode(this.icon.xRay));
+    //console.log(String.fromCharCode(this.icon.xRay));
   }
 
   bindEvent(event: any) {
@@ -37,8 +45,17 @@ export class DashboardComponent implements OnInit {
     console.log(event.data.newUser);
   }
 
+  bindTicketEvent(event: any) {
+    this.ticketDetail = event.data.createTicket;
+    console.log(event.data.createTicket);
+  }
+
   clear(event: any) {
     this.detail = event;
+  }
+
+  clearTicketEvent(event: any) {
+    this.ticketDetail = event;
   }
 
   countValidatedInvoices() {

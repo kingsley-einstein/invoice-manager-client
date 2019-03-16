@@ -2,6 +2,7 @@
   <div class="form-group">
     <label class="control-label">
       Email
+      <fa-icon [icon]="emailIcon"></fa-icon>
     </label>
     <input type="email" class="form-control" [class.btn-outline-success]="email.pristine || email.valid" [class.btn-outline-danger]="email.dirty && email.invalid" [formControl]="email">
       <ul class="text-danger list-unstyled" *ngIf="email.dirty && email.invalid">
@@ -16,6 +17,7 @@
     <div class="form-group">
       <label class="control-label">
         Name
+        <fa-icon [icon]="nameIcon"></fa-icon>
       </label>
       <input type="text" class="form-control" [class.btn-outline-success]="name.pristine || name.valid" [class.btn-outline-danger]="name.dirty && name.invalid" [formControl]="name">
         <ul class="text-danger list-unstyled" *ngIf="name.dirty && name.invalid">
@@ -27,6 +29,7 @@
       <div class="form-group">
       <label class="control-label">
         Phone No.
+        <fa-icon [icon]="phoneIcon"></fa-icon>
       </label>
       <input type="tel" class="form-control" [class.btn-outline-success]="phone.pristine || phone.valid" [class.btn-outline-danger]="phone.dirty && phone.invalid" [formControl]="phone">
         <ul class="text-danger list-unstyled" *ngIf="phone.dirty && phone.invalid">
@@ -41,6 +44,7 @@
       <div class="form-group">
       <label class="control-label">
         Address
+        <fa-icon [icon]="addressIcon"></fa-icon>
       </label>
       <input type="text" class="form-control" [class.btn-outline-success]="address.pristine || address.valid" [class.btn-outline-danger]="address.dirty && address.invalid" [formControl]="address">
         <ul class="text-danger list-unstyled" *ngIf="address.dirty && address.invalid">
@@ -55,6 +59,7 @@
     <div class="form-group">
     <label class="control-label">
     Password
+    <fa-icon [icon]="passwordIcon"></fa-icon>
   </label>
   <input type="password" class="form-control" [class.btn-outline-success]="password.pristine || password.valid" [class.btn-outline-danger]="password.dirty && password.invalid" [formControl]="password">
     <ul class="text-danger list-unstyled" *ngIf="password.dirty && password.invalid">

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../types';
 import { GraphqlRestService } from '../graphql-rest.service';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-users-list',
@@ -13,6 +14,10 @@ export class UsersListComponent implements OnInit {
   savedForFilter: User[];
   size: any;
   page: number = 1;
+  searchIcon: any = faSearch;
+
+  @Input()
+  userRole: any;
 
   constructor(private graphService: GraphqlRestService) { }
 
@@ -41,6 +46,13 @@ export class UsersListComponent implements OnInit {
       return r.name.toLowerCase().startsWith(event.target.value.toLowerCase());
     });
     
+  }
+
+  invertRole(userId) {
+    this.graphService.invertRole(userId).subscribe(r => {
+      console.log(r);
+      alert("User's role changed");
+    });
   }
 
 }

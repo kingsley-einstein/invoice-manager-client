@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { User, Query } from '../types';
 import { GraphqlRestService } from '../graphql-rest.service';
 import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { faAt, faPen, faPhone, faAddressBook, faKey } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-new-user',
@@ -21,6 +22,12 @@ export class NewUserComponent implements OnInit {
   address: AbstractControl;
 
   userData: User;
+
+  emailIcon: any = faAt;
+  nameIcon: any = faPen;
+  phoneIcon: any = faPhone;
+  addressIcon: any = faAddressBook;
+  passwordIcon: any = faKey;
 
 
   constructor(private graphService: GraphqlRestService, fb: FormBuilder) {

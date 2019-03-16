@@ -2,7 +2,7 @@
   <ngb-tab *ngIf="userRole == 'admin'">
     <ng-template ngbTabTitle>
       <b>Add User</b>
-      {{ icon.userPlus }}
+      <fa-icon [icon]="addUserIcon"></fa-icon>
     </ng-template>
     <ng-template ngbTabContent>
       <div style="margin-top: 40px; padding: 15px;">
@@ -17,12 +17,22 @@
       </div>
     </ng-template>
   </ngb-tab>
-  <ngb-tab *ngIf="userRole == 'admin'">
+  <ngb-tab *ngIf="userRole == 'admin' || userRole == 'moderator'">
     <ng-template ngbTabTitle>
       <b>Issue Ticket</b>
+      <fa-icon [icon]="issueTicketIcon"></fa-icon>
     </ng-template>
     <ng-template ngbTabContent>
-      <app-new-ticket></app-new-ticket>
+      <div style="margin-top: 40px; padding: 15px;">
+        <div class="row row-fluid" style="padding: 15px;">
+          <div class="col-sm-6 col-md-6 col-sm-offset-5 col-md-offset-5">
+            <app-new-ticket (ticketCreated)="bindTicketEvent($event)"></app-new-ticket>
+          </div>
+          <div class="col-sm-6 col-md-6 col-sm-offset-5 col-md-offset-5">
+            <app-ticket-info [detail]="ticketDetail" (detailCleared)="clearTicketEvent($event)"></app-ticket-info>
+          </div>
+        </div>
+      </div>
     </ng-template>
   </ngb-tab>
   <ngb-tab *ngIf="userRole == 'admin'">
@@ -42,7 +52,7 @@
       </div>
     </ng-template>
   </ngb-tab>
-  <ngb-tab>
+  <ngb-tab *ngIf="userRole == 'admin'">
     <ng-template ngbTabTitle>
       <b>Validated Invoices</b>
       <span class="badge badge-success">
@@ -62,6 +72,7 @@
   <ngb-tab>
     <ng-template ngbTabTitle>
       <b>Statistics</b>
+      <fa-icon [icon]="statisticsIcon"></fa-icon>
     </ng-template>
     <ng-template ngbTabContent>
       <app-chart></app-chart>
@@ -70,20 +81,22 @@
   <ngb-tab>
     <ng-template ngbTabTitle>
       <b>Chat</b>
+      <fa-icon [icon]="chatIcon"></fa-icon>
     </ng-template>
     <ng-template ngbTabContent>
       <app-chat [userId]="userId" [userRole]="userRole"></app-chat>
     </ng-template>
   </ngb-tab>
-  <ngb-tab>
+  <ngb-tab *ngIf="userRole == 'admin'">
     <ng-template ngbTabTitle>
       <b>Users</b>
+      <fa-icon [icon]="usersIcon"></fa-icon>
       <span class="badge badge-info">
         {{ users }}
       </span>
     </ng-template>
     <ng-template ngbTabContent>
-      <app-users-list></app-users-list>
+      <app-users-list [userRole]="userRole"></app-users-list>
     </ng-template>
   </ngb-tab>
   <ngb-tab *ngIf="userRole == 'user'">
@@ -91,7 +104,7 @@
       <b>My Tickets</b>
     </ng-template>
     <ng-template ngbTabContent>
-      <app-tickets></app-tickets>
+      <app-tickets [userId]="userId" [userRole]="userRole"></app-tickets>
     </ng-template>
   </ngb-tab>
 </ngb-tabset>

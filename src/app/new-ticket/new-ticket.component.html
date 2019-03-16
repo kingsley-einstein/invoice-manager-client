@@ -1,3 +1,57 @@
-<p>
-  new-ticket works!
-</p>
+<form [formGroup]="ticketGroup">
+  <div class="form-group">
+    <label class="control-label">
+      Phone Model:
+    </label>
+    <input type="text" placeholder="Enter phone model: e.g Infinix Hot 5" [formControl]="phone" class="form-control" [class.btn-outline-success]="phone.pristine || phone.valid" [class.btn-outline-danger]="phone.dirty && phone.invalid">
+    <ul class="list-unstyled text-danger" *ngIf="phone.dirty && phone.invalid">
+      <li *ngIf="phone.errors.required">
+        Phone model is required
+      </li>
+      <li *ngIf="phone.errors.minLength">
+        At least 5 characters are required
+      </li>
+    </ul>
+  </div>
+  <div class="form-group">
+    <label class="control-label">
+      Parts (separated by comma):
+    </label>
+    <input type="text" placeholder="Enter parts needing repair or replacement separated by comma: e.g Camera" [formControl]="parts" class="form-control" [class.btn-outline-success]="parts.pristine || parts.valid" [class.btn-outline-danger]="parts.dirty && parts.invalid">
+    <ul class="list-unstyled text-danger" *ngIf="parts.dirty && parts.invalid">
+      <li *ngIf="parts.errors.required">
+        Enter parts needing repair or replacement
+      </li>
+      <li *ngIf="parts.errors.minLength">
+        At least 5 characters are required
+      </li>
+    </ul>
+  </div>
+  <div class="form-group">
+    <label class="control-label">
+      Client:
+    </label>
+    <input type="text" placeholder="Enter client's name" [formControl]="client" class="form-control" [class.btn-outline-success]="client.pristine || client.valid" [class.btn-outline-danger]="client.dirty && client.invalid">
+    <ul class="list-unstyled text-danger" *ngIf="client.dirty && client.invalid">
+      <li *ngIf="client.errors.required">
+        Client name is required
+      </li>
+      <li *ngIf="client.errors.minLength">
+        At least 7 characters are required
+      </li>
+    </ul>
+  </div>
+  <div class="form-group">
+    <label class="control-label">
+      Select Technician (id):
+    </label>
+    <select class="form-control" [(ngModel)]="id" [ngModelOptions]="{standalone: true}" [class.btn-outline-success]="ticketGroup.valid" [class.btn-outline-danger]="ticketGroup.invalid">
+      <option *ngFor="let user of users">
+        {{ user.id }}
+      </option>
+    </select>
+  </div>
+</form>
+<button [disabled]="ticketGroup.invalid || id.trim().length <= 0" (click)="createTicket()" class="btn btn-primary btn-lg">
+  Assign
+</button>

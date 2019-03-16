@@ -2,8 +2,11 @@
   <div class="row row-fluid">
     <div class="col-sm-4 col-md-4"></div>
     <div class="col-sm-4 col-md-4">
-      <div class="form-group">
+      <div class="input-group input-group-append">
         <input class="form-control" placeholder="Search" (input)="filter($event)">
+        <span class="input-group-text">
+          <fa-icon [icon]="searchIcon"></fa-icon>
+        </span>
       </div>
     </div>
     <div class="col-sm-4 col-md-4"></div>
@@ -40,6 +43,9 @@
               <small> {{ user.address }}</small>
             </div>
         </div>
+        <button class="btn btn-warning btn-sm" [disabled]="user.role.value == 'admin'" (click)="invertRole(user.id)">
+          Invert Role
+        </button>
       </div>
       </div>
     </div>
