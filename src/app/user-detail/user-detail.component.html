@@ -1,3 +1,45 @@
-<p>
-  user-detail works!
-</p>
+<div *ngIf="user" class="card">
+  <div class="card-header">
+    <div class="card-title">
+      <b> {{ user.name }}</b>
+      <caption>
+        <span class="badge badge-info">
+          {{ user.role.value }}
+        </span>
+      </caption>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-text">
+      <div>
+        <b>ID:</b>
+        <small> {{ user.id }}</small>
+      </div>
+      <div>
+        <b>Email:</b>
+        <small> {{ user.email }}</small>
+      </div>
+      <div>
+        <b>Phone:</b>
+        <small> {{ user.phone }} </small>
+      </div>
+      <div>
+        <b>Address:</b>
+        <small> {{ user.address }} </small>
+      </div>
+      <div>
+        <b>Token:</b>
+        <small> {{ user.token }} </small>
+      </div>
+      <div>
+        <b>Date Joined:</b>
+        <small> {{ user.dateJoined }}</small>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-sm btn-outline-danger" (click)="logout()">
+      Logout
+    </button>
+  </div>
+</div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GraphqlRestService } from '../graphql-rest.service';
 import { Invoice } from '../types';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { InvoiceDetailComponent } from '../invoice-detail/invoice-detail.component';
 
 @Component({
   selector: 'app-validated-invoice',
@@ -13,7 +15,7 @@ export class ValidatedInvoiceComponent implements OnInit {
   size: number;
   page: number = 1;
 
-  constructor(private graphService: GraphqlRestService) { }
+  constructor(private graphService: GraphqlRestService, private modal: NgbModal) { }
 
   ngOnInit() {
     this.loadInvoices();
@@ -30,6 +32,13 @@ export class ValidatedInvoiceComponent implements OnInit {
     await this.graphService.countInvoicesByStatus(true).subscribe(r => {
       this.size = r;
     });
+  }
+
+  open(id: any) {
+    this.modal.open(InvoiceDetailComponent, {
+      size: 'lg',
+      centered: true
+    }).componentInstance.invoiceId = id;
   }
 
 }

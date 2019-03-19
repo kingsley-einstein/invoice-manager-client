@@ -4,30 +4,3 @@ body {
     padding: 0;
     margin: 0;
 }
-
-.jumbotron {
-    margin: 0;
-}
-
-.login-group {
-    margin: 50px auto;
-    padding: 18px;
-    border: 1px solid #dcdcdc;
-    border-radius: 15px;
-}
-
-.main {
-    height: 100vh;
-    width: 100vw;
-}
-
-.body {
-    height: 90vh;
-    width: 100vw;
-    overflow: scroll;
-}
-
-.foot {
-    height: 10vh;
-    width: 100vw;
-}

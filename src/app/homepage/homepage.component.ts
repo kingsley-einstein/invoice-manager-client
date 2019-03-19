@@ -31,6 +31,7 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.checkForToken();
   }
 
   login() {
@@ -57,6 +58,21 @@ export class HomepageComponent implements OnInit {
       localStorage.setItem('token', this.data.token);
       this.router.navigateByUrl(`main/dashboard/${this.data.id}/${this.data.role.value}`);
     });
+  }
+
+  checkForToken() {
+    if (localStorage.getItem('token')) {
+      this.graphService.loginByToken(localStorage.getItem('token')).subscribe(value => {
+        this.data = value.data['loginByToken'];
+      },
+      err => {
+        console.log(err);
+      },
+      () => {
+        localStorage.setItem('token', this.data.token);
+        this.router.navigateByUrl(`main/dashboard/${this.data.id}/${this.data.role.value}`);
+      });
+    }
   }
 
 }

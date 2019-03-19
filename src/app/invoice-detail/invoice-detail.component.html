@@ -1,3 +1,39 @@
-<p>
-  invoice-detail works!
-</p>
+<div style="margin: 15px; padding: 12px;">
+  <div class="container container-fluid" id="printable">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID.</th>
+          <th>STATUS</th>
+          <th>TICKET ID.</th>
+          <th>PHONE MODEL</th>
+          <th>CLIENT</th>
+          <th>PARTS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ invoice.id }}</td>
+          <td>{{ invoice.validated ? 'Validated' : 'Pending' }}</td>
+          <td>{{ invoice.ticket.id }}</td>
+          <td>{{ invoice.ticket.phone }}</td>
+          <td>{{ invoice.ticket.client }}</td>
+          <td>
+            <span *ngFor="let part of invoice.ticket.parts.split(',')" class="badge badge-info">
+              {{ part }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button class="btn btn-success btn-sm" [disabled]="invoice.validated" (click)="validateInvoice()">
+      Validate
+    </button>
+    <button class="btn btn-info btn-sm" [disabled]="!invoice.validated" (click)="print()">
+      Print
+    </button>
+    <button class="btn btn-danger btn-sm" (click)="close()">
+      Dismiss
+    </button>
+</div>

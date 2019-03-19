@@ -28,6 +28,7 @@ import { TicketInfoComponent } from './ticket-info/ticket-info.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ChatComponent } from './chat/chat.component';
 import { TicketsComponent } from './tickets/tickets.component';
+import { ModifyUserComponent } from './modify-user/modify-user.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,13 @@ import { TicketsComponent } from './tickets/tickets.component';
     UserInfoComponent,
     TicketInfoComponent,
     ChatComponent,
-    TicketsComponent
+    TicketsComponent,
+    ModifyUserComponent
+  ],
+  entryComponents: [
+    ModifyUserComponent,
+    TicketDetailComponent,
+    InvoiceDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -1,53 +1,63 @@
-<div *ngIf="ticket" class="card">
-  <div class="card-header">
-    <div class="card-title">
-      <h6>Ticket Detail</h6>
+<div style="margin: 15px; padding: 15px;">
+  <div id="printable">
+      <div *ngIf="ticket" class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <h6>Ticket Detail</h6>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-text">
+              <div>
+                <b> Id: </b>
+                <small> {{ ticket.id }} </small>
+              </div>
+              <div>
+                <b> Phone Model:</b>
+                <small> {{ ticket.phone }} </small>
+              </div>
+              <div>
+                <b> Parts: </b>
+                <span *ngFor="let part of ticket.parts.split(',')" class="badge badge-info">
+                  {{ part }}
+                </span>
+              </div>
+              <div>
+                <b> Status: </b>
+                <small> {{ ticket.status }} </small>
+              </div>
+              <div>
+                <b> Client: </b>
+                <small> {{ ticket.client }} </small>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+  <div class="form-group">
+    <div>
+      <label class="control-label"> <b>Update Ticket Status</b></label>
+    <select [(ngModel)]="status" class="form-control" [disabled]="ticket.status == 'Cancelled' || ticket.status == 'Repaired'">
+      <option *ngFor="let i of statuses">
+        {{ i }}
+      </option>
+    </select>
+    </div>
+    <div>
+      <button class="btn btn-outline-warning btn-sm" (click)="changeStatus()" [disabled]="ticket.status == 'Cancelled' || ticket.status == 'Repaired'">
+        Change
+      </button>
     </div>
   </div>
-  <div class="card-body">
-    <div class="card-text">
-      <div>
-        <b> Id: </b>
-        <small> {{ ticket.id }} </small>
-      </div>
-      <div>
-        <b> Phone Model:</b>
-        <small> {{ ticket.phone }} </small>
-      </div>
-      <div>
-        <b> Parts: </b>
-        <span *ngFor="let part of ticket.parts.split(',')" class="badge badge-info">
-          {{ part }}
-        </span>
-      </div>
-      <div>
-        <b> Status: </b>
-        <small> {{ ticket.status }} </small>
-      </div>
-      <div>
-        <b> Client: </b>
-        <small> {{ ticket.client }} </small>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="form-group">
   <div>
-    <label class="control-label"> <b>Update Ticket Status</b></label>
-  <select [(ngModel)]="status" class="form-control">
-    <option *ngFor="let i of statuses">
-      {{ i }}
-    </option>
-  </select>
-  </div>
-  <div>
-    <button class="btn btn-outline-warning btn-sm" (click)="changeStatus()">
-      Change
+    <button [disabled]="ticket.status !== 'Repaired'" class="btn btn-sm" [class.btn-outline-danger]="ticket.status == 'Cancelled'" [class.btn-outline-success]="ticket.status == 'Repaired'" [class.btn-outline-warning]="ticket.status !== 'Cancelled' && ticket.status !== 'Repaired'" (click)="generateInvoice()">
+      Generate Invoice
+    </button>
+    <button class="btn btn-sm btn-outline-info" (click)="print()">
+      Print
+    </button>
+    <button class="btn btn-sm btn-outline-danger" (click)="close()">
+      Dismiss
     </button>
   </div>
-</div>
-<div>
-  <button [disabled]="ticket.status !== 'Repaired'" class="btn btn-sm" [class.btn-outline-danger]="ticket.status == 'Cancelled'" [class.btn-outline-success]="ticket.status == 'Repaired'" [class.btn-outline-warning]="ticket.status !== 'Cancelled' && ticket.status !== 'Repaired'">
-    Generate Invoice
-  </button>
 </div>

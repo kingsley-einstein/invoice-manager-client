@@ -1,11 +1,9 @@
 <table class="table table-striped">
   <thead>
-    <td>
-      <b>Id</b>
-    </td>
-    <td>
-      <b>Action</b>
-    </td>
+    <tr>
+      <th>ID</th>
+      <th>ACTION</th>
+    </tr>
   </thead>
   <tbody>
     <tr *ngFor="let i of data">
@@ -13,8 +11,8 @@
         {{ i.id }}
       </td>
       <td>
-        <button class="btn btn-success btn-md">
-          Validate
+        <button class="btn btn-info btn-md" (click)="open(i.id)">
+          Open
         </button>
       </td>
     </tr>

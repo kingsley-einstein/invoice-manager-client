@@ -46,6 +46,9 @@
         <button class="btn btn-warning btn-sm" [disabled]="user.role.value == 'admin'" (click)="invertRole(user.id)">
           Invert Role
         </button>
+        <button class="btn btn-info btn-sm" (click)="openModal(user.id)">
+          Modify Info
+        </button>
       </div>
       </div>
     </div>

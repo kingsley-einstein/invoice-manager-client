@@ -1,7 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Injector, TemplateRef } from '@angular/core';
 import { User } from '../types';
 import { GraphqlRestService } from '../graphql-rest.service';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { ModifyUserComponent } from '../modify-user/modify-user.component';
 
 @Component({
   selector: 'app-users-list',
@@ -19,7 +21,7 @@ export class UsersListComponent implements OnInit {
   @Input()
   userRole: any;
 
-  constructor(private graphService: GraphqlRestService) { }
+  constructor(private graphService: GraphqlRestService, private modal: NgbModal) { }
 
   ngOnInit() {
     this.loadUsers();
@@ -37,7 +39,7 @@ export class UsersListComponent implements OnInit {
     await this.graphService.countAllUsers().subscribe(r => {
       console.log(r);
       this.size = r;
-    })
+    });
   }
 
   filter(event: any) {
@@ -53,6 +55,13 @@ export class UsersListComponent implements OnInit {
       console.log(r);
       alert("User's role changed");
     });
+  }
+
+  openModal(id: any) {
+    this.modal.open(ModifyUserComponent, {
+      centered: true,
+      size: 'sm'
+    }).componentInstance.userId = id;
   }
 
 }

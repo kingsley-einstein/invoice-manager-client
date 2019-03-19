@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
 import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { TicketDetailComponent } from './ticket-detail/ticket-detail.component';
+//import { TicketDetailComponent } from './ticket-detail/ticket-detail.component';
 
 const routes: Routes = [
   {
@@ -21,11 +21,7 @@ const routes: Routes = [
   {
     path: 'dashboard/:id/:role',
     component: DashboardComponent
-  },
-{
-  path: 'ticket/:ticketid/:userid/:userrole',
-  component: TicketDetailComponent
-}]
+  }]
   },
   {
     path: '',

@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { GraphqlRestService } from '../graphql-rest.service';
 import { Ticket } from '../types';
-import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { TicketDetailComponent } from '../ticket-detail/ticket-detail.component';
+//import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tickets',
@@ -13,15 +15,12 @@ export class TicketsComponent implements OnInit {
   @Input()
   userId: any;
 
-  @Input()
-  userRole: any;
-
   page: number = 1;
 
   tickets: Ticket[];
   count: number;
 
-  constructor(private graphService: GraphqlRestService, private router: Router) { }
+  constructor(private graphService: GraphqlRestService, private modal: NgbModal) { }
 
   ngOnInit() {
     this.loadTicketsByUser();
@@ -44,7 +43,10 @@ export class TicketsComponent implements OnInit {
   }
 
   showDetail(id) {
-    this.router.navigateByUrl(`main/ticket/${id}/${this.userId}/${this.userRole}`);
+    this.modal.open(TicketDetailComponent, {
+      size: 'lg',
+      centered: true
+    }).componentInstance.ticketId = id;
   }
 
 }

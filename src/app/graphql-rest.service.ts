@@ -280,7 +280,10 @@ export class GraphqlRestService {
             email,
             phone,
             address,
-            dateJoined
+            dateJoined,
+            role {
+              value
+            }
           }
         }
        `

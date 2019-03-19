@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GraphqlRestService } from '../graphql-rest.service';
 import { ActivatedRoute } from '@angular/router';
-import { faUserPlus, faClipboard, faChartArea, faComment, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faUserPlus, faClipboard, faChartArea, faComment, faUsers, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
   statisticsIcon: any = faChartArea;
   chatIcon: any = faComment;
   usersIcon: any = faUsers;
+  meIcon: any = faUser;
   //icon = fa;
 
   users: number;

@@ -104,7 +104,24 @@
       <b>My Tickets</b>
     </ng-template>
     <ng-template ngbTabContent>
-      <app-tickets [userId]="userId" [userRole]="userRole"></app-tickets>
+      <app-tickets [userId]="userId"></app-tickets>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab>
+    <ng-template ngbTabTitle>
+      <b>Me</b>
+      <fa-icon [icon]="meIcon"></fa-icon>
+    </ng-template>
+    <ng-template ngbTabContent>
+      <div style="margin-top: 40px; padding: 15px;">
+        <div class="row row-fluid">
+          <div class="col-sm-3 col-md-3 col-sm-offset-5 col-md-offset-5"></div>
+          <div class="col-sm-6 col-md-6 col-sm-offset-5 col-md-offset-5">
+            <app-user-detail [userId]="userId"></app-user-detail>
+          </div>
+          <div class="col-sm-3 col-md-3 col-sm-offset-5 col-md-offset-5"></div>
+        </div>
+      </div>
     </ng-template>
   </ngb-tab>
 </ngb-tabset>
